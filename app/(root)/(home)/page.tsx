@@ -1,6 +1,40 @@
+import QuestionCard from "@/components/cards/QuestionCard";
+import HomeFilters from "@/components/home/HomeFilters";
+import Filter from "@/components/shared/Filter";
+import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
+import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
+
+const questions = [
+  {
+    _id: 1,
+    title: "title 1",
+    tags: [
+      { _id: 1, name: "python" },
+      { _id: 2, name: "C#" },
+    ],
+    author: { _id: 1, name: "pxuria" },
+    upvotes: 10,
+    views: 1300,
+    answers: [1, 2, 4],
+    createdAt: new Date(),
+  },
+  {
+    _id: 2,
+    title: "title 2",
+    tags: [
+      { _id: 1, name: "css" },
+      { _id: 2, name: "html" },
+    ],
+    author: { _id: 1, name: "pxuria" },
+    upvotes: 10,
+    views: 1300,
+    answers: [2, 4, 51, 1123],
+    createdAt: new Date(),
+  },
+];
 
 const Home = () => {
   return (
@@ -20,8 +54,39 @@ const Home = () => {
           imgSrc="/assets/icons/search.svg"
           placeholder="search for questions..."
           otherClasses="flex-1"
-        />{" "}
-        Filters
+        />
+        <Filter
+          filters={HomePageFilters}
+          otherClasses="min-h-[56px] sm:min-w-[170px]"
+          containerClasses="hidden max-md:flex"
+        />
+      </div>
+
+      <HomeFilters />
+
+      <div className="mt-10 flex flex-col w-full gap-6">
+        {questions.length > 0 ? (
+          questions.map((item) => (
+            <QuestionCard
+              key={item._id}
+              _id={item._id}
+              title={item.title}
+              tags={item.tags}
+              author={item.author}
+              upvotes={item.upvotes}
+              views={item.views}
+              answers={item.answers}
+              createdAt={item.createdAt}
+            />
+          ))
+        ) : (
+          <NoResult
+            title="There’s no question to show"
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
+            link="/ask-question"
+            linkTitle="Ask a Question"
+          />
+        )}
       </div>
     </>
   );
