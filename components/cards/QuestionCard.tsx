@@ -1,6 +1,6 @@
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import Link from "next/link";
-import Metric from "../Metric";
+import Metric from "../shared/Metric";
 import RenderedTag from "../shared/RenderedTag";
 
 type tags = {
