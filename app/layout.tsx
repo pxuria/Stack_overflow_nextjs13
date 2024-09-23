@@ -1,7 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
-import React from "react";
 
 import { ThemeProvider } from "@/context/ThemeProvider";
 import "../styles/prism.css";
@@ -40,7 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             },
           }}
         >
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            {children}
+            <SpeedInsights />
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>
