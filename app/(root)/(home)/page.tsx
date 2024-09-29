@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
+import React from "react";
 
 const Home = async () => {
   const results = await getQuestions({});
@@ -17,7 +18,9 @@ const Home = async () => {
         <h1 className="h1-bold text-dark100_light900">All Questions</h1>
 
         <Link href="/ask-question" className="flex justify-end max-sm:w-full">
-          <Button className="primary-gradient min-h-[46px] px-4 py-3 !text-light-900 ">Ask a Question</Button>
+          <Button className="primary-gradient min-h-[46px] px-4 py-3 !text-light-900 ">
+            Ask a Question
+          </Button>
         </Link>
       </div>
 
